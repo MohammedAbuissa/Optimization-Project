@@ -9,7 +9,8 @@ branin = (y-(5.1/(4*pi^2))*x^.2+(5/pi)*x-6).^2 + 10*(1- (1/(8*pi)))*cos(x)+10; %
 
 %steepest descent
 n = [10,3.23];
-[location, optima, time, count] = steepest_descent(easom, [x y], [pi, pi], true, n, 10, true, 0.01);
+%(obj_function, symbols, solution, min, initial_point, number_of_iterations, optimum, fixed_step, tolerance)
+[location, optima, time, count] = steepest_descent(easom, [x y], [pi, pi], true, n, 10, true, 0.01, 0.001);
 
 disp('steepest descent');
 fprintf('time: %d\n',time);
@@ -19,7 +20,8 @@ fprintf('location: %d, %d\n', location(1), location(2));
 
 %fletcher reeves
 n = [0.01,0.01];
-[location, optima, time, count] = fletcher_reeves(rastigin, [x y], [0,0], n, 10);
+%(obj_function, symbols, solution, initial_point, number_of_iterations, tolerance)
+[location, optima, time, count] = fletcher_reeves(rastigin, [x y], [0,0], n, 10, 0.001);
 
 disp('fletcher reeves');
 fprintf('time: %d\n',time);
