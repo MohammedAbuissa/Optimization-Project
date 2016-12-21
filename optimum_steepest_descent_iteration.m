@@ -6,9 +6,10 @@ function [new_point, function_value, optimality] = optimum_steepest_descent_iter
         gradient_factor = 1;
     end
     
-    syms lambda
+    direction = gradient_factor * subs(grad, symbols, init_point);
     
-    lambda_point(lambda) = init_point + gradient_factor * lambda * subs(grad, symbols, init_point);
+    syms lambda
+    lambda_point(lambda) = init_point +lambda * direction;
     lambda_value = transpose(vpasolve(gradient(subs(obj_function, symbols, lambda_point), lambda), lambda));
     
     %invalid lambda values
@@ -21,7 +22,7 @@ function [new_point, function_value, optimality] = optimum_steepest_descent_iter
         end
     end
             
-    new_point = eval(lambda_point(real(lambda_value(1))));
+    new_point = real(eval(lambda_point(real(lambda_value(1)))));
     
     function_value = real(eval(subs(obj_function, symbols, new_point)));
     
