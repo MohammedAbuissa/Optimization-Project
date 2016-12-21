@@ -23,7 +23,7 @@ function [new_point, function_value, optimality] = optimum_steepest_descent_iter
             
     new_point = eval(lambda_point(real(lambda_value(1))));
     
-    function_value = eval(subs(obj_function, symbols, new_point));
+    function_value = real(eval(subs(obj_function, symbols, new_point)));
     
     if(norm(subs(grad, symbols, new_point)) < tolerance)
         optimality = true;   
